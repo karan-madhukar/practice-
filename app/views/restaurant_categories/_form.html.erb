@@ -1,0 +1,20 @@
+<%= form_with(model: restaurant_category, local: true) do |form| %>
+  <% if restaurant_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(restaurant_category.errors.count, "error") %> prohibited this restaurant_category from being saved:</h2>
+
+      <ul>
+        <% restaurant_category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :restaurant_id, value: res.id %>
+  
+  <%= form.label :pictures %>
+  <%= form.file_field :pictures, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

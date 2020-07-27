@@ -1,0 +1,30 @@
+<%= form_with(model: image, local: true) do |form| %>
+  <% if image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+        <% image.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field row">
+            <%= form.label :restaurant, for: "restaurant", class:"col-sm-4 col-form-label"  %>
+            <div class="col-sm-2 my-2">
+              <%= form.select(:restaurant_id)  do %>
+                <% @restaurant.each do |c| %>
+                  <%= content_tag(:option, c.name, value: c.id) %>
+                <% end %>
+              <% end %>
+            </div>      
+          </div>  
+   <div class="field">
+    <%= form.file_field :files, multiple: true %>
+   </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
